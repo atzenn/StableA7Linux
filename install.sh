@@ -10,7 +10,7 @@ function linux_depends(){
                 libgcc1 libreadline-dev libglib2.0-dev libzip-dev \
                 libclutter-1.0-dev  \
                 libfuse-dev cython python2.7 \
-                libncurses5 libplist-utils libplist-dev zip unzip
+                libncurses5 libplist-utils libplist-dev libplist++-dev zip unzip
         else
                 echo "Package manager is not supported"
                 exit 1
