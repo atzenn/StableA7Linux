@@ -15,11 +15,8 @@ if [ "$#" == 1 ]; then
         until [ $string = 1 ];
         do
             
-            echo "Waiting 10 seconds to allow you to enter DFU mode"
-            sleep 10
-            echo "Attempting to get into pwndfu mode"
-            echo "Please just enter DFU mode again on each reboot"
             echo "The script will run ipwndfu again and again until the device is in PWNDFU mode"
+            read -p "Please put your idevice in dfu mode and press enter"
             ./ipwndfu -p
             ./ipwndfu -p
             string=$(lsusb | grep -c "Apple, Inc. Mobile Device (DFU Mode)")
