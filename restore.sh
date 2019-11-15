@@ -54,33 +54,33 @@ if [ "$#" == 1 ]; then
 				cd libirecovery
                 git submodule init && git submodule update
 				./autogen.sh
-				make && make install
+				make && sudo make install
 				cd ../libgeneral
                 git submodule init && git submodule update
 				./autogen.sh
-				make && make install
+				make && sudo make install
 				cd ../libfragmentzip
                 git submodule init && git submodule update
 				./autogen.sh
-				make && make install
+				make && sudo make install
 				cd ../futurerestore
                 git submodule init && git submodule update
 				./autogen.sh
-				make && make install
+				make && sudo make install
 				cd ../img4tool
                 git submodule init && git submodule update
 				./autogen.sh
-				make && make install
+				make && sudo make install
 				cd ../tsschecker
                 git submodule init && git submodule update
 				./autogen.sh
-				make && make install
+				make && sudo make install
                 cd ../..
                               unzip maloader.zip
                               unzip liboffsetfinder64.zip
                               cd liboffsetfinder64
 				./autogen.sh
-				make && make install
+				make && sudo make install
                                cd ..
                                cd maloader 
                                 make release
