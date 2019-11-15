@@ -26,7 +26,7 @@ if [ "$#" == 1 ]; then
         done
         
         sleep 3
-        read -p "Please unplug and plug in your idevice again"
+        read -p "Please unplug and plug in your idevice again and press enter"
         ./ipwndfu -p
         python rmsigchks.py
         cd ..
