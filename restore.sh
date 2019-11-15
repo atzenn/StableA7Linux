@@ -44,42 +44,69 @@ if [ "$#" == 1 ]; then
 				git clone --recursive https://github.com/merculous/futurerestore
 				git clone https://github.com/tihmstar/img4tool.git
 				git clone --recursive https://github.com/tihmstar/tsschecker
+                                git clone --recursive https://github.com/tihmstar/igetnonce
+
 
 				export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
 
 			
 				cd libirecovery
-                git submodule init && git submodule update
+                              git submodule init 
+                            git submodule update
+				./autogen.sh
+				make 
+                                sudo make install
+				cd ..
+                                cd libgeneral
+                           git submodule init
+                         git submodule update
+				./autogen.sh
+				make
+                                  sudo make install
+				cd ..
+                                cd libfragmentzip
+                           git submodule init
+                          git submodule update
+				./autogen.sh
+				make 
+                              sudo make install
+				cd ..
+                               cd futurerestore
+                           git submodule init 
+                           git submodule update
 				./autogen.sh
 				make && sudo make install
-				cd ../libgeneral
-                git submodule init && git submodule update
+				cd .. 
+                               cd img4tool
+                          git submodule init 
+                       git submodule update
 				./autogen.sh
-				make && sudo make install
-				cd ../libfragmentzip
-                git submodule init && git submodule update
+				make           
+                                sudo make install
+				cd ..
+                                cd tsschecker
+                            git submodule init
+                        git submodule update
 				./autogen.sh
-				make && sudo make install
-				cd ../futurerestore
-                git submodule init && git submodule update
+				make
+                                sudo make install
+                               cd .. 
+                              cd igetnonce
+                           git submodule init
+                     git submodule update
 				./autogen.sh
-				make && sudo make install
-				cd ../img4tool
-                git submodule init && git submodule update
-				./autogen.sh
-				make && sudo make install
-				cd ../tsschecker
-                git submodule init && git submodule update
-				./autogen.sh
-				make && sudo make install
-                cd ../..
+				make 
+                               sudo make install
+                            cd ..
+                            cd ..
                               
                               unzip manifests.zip
                               unzip maloader.zip
                               unzip liboffsetfinder64.zip
                               cd liboffsetfinder64
 				./autogen.sh
-				make && sudo make install
+				make 
+                               sudo make install
                                cd ..
                                cd maloader 
                                 make release
