@@ -127,7 +127,8 @@ if [ "$#" == 1 ]; then
 			mkdir -p ipsw
 			mkdir -p shsh
 			unzip -q -d ipsw *.ipsw
-			cp -rv ipsw/Firmware/Mav7Mav8-7.60.00.Release.bbfw .
+			cp -rv ipsw/Firmware/Mav7Mav8-7.60.00.Release.bbfw /
+                        cp -rv ipsw/Firmware/all_flash/sep-firmware.*.RELEASE.im4p /
             ls
             igetnonce | grep 'n53ap' &> /dev/null
             if [ $? == 0 ]; then
@@ -280,7 +281,7 @@ if [ "$#" == 1 ]; then
 			cd ..
 			
 			raw=$(irecovery -q | grep NONC)
-			apnonce=$(echo $raw | cut -d ':' -f 2)
+			apnonce=$(echo $raw)
             
             if [ $device == iPad4,1 ] || [ $device == iPad4,2 ] || [ $device == iPad4,3 ] || [ $device == iPad4,4 ] || [ $device == iPad4,5 ]; then
                 
@@ -329,7 +330,6 @@ if [ "$#" == 1 ]; then
             exit
         fi
     fi
-else
     echo "Usage: $0 PathToIpsw (ipsw must be in this directory)"
     echo "Example: $0 iPhone_4.0_64bit_10.3.3_14G60_Restore.ipsw"
 fi
