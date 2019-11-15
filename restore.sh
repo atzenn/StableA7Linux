@@ -275,7 +275,8 @@ if [ "$#" == 1 ]; then
 			fi
 
 			cd ipsw
-			zip ../downgrade.ipsw -r9 *
+                        zip -q ../downgrade.ipsw -r0 *
+			
 			cd ..
 			
 			raw=$(irecovery -q | grep NONC)
