@@ -10,6 +10,8 @@ Run on terminal =>
  
  ./install.sh 
  
+ If installation fails, run ./install.sh again
+ 
 And then place IPSW without renaming in the folder where install.sh and restore.sh =>
 
 run on terminal =>
