@@ -31,13 +31,9 @@ if [ "$#" == 1 ]; then
 		if [ $string == 1 ]; then
 			echo "We seem to be in pwned DFU mode!"
 
-			if [ -e "build" ]; then
-				echo "[+] Build folder exists! If the script doesn't work please delete the 'Build' folder and run it again"
-                sleep 3
-				
-			else
 				echo "[+] Build folder does not exist! Grabbing dependencies and installing!"
 				mkdir -p build && cd build
+                                git clone https://github.com/lzfse/lzfse
 				git clone https://github.com/libimobiledevice/libirecovery
 				git clone https://github.com/tihmstar/libfragmentzip
 				git clone https://github.com/tihmstar/libgeneral.git
@@ -49,7 +45,13 @@ if [ "$#" == 1 ]; then
 
 				export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
 
-			
+			       cd lzfse
+                              git submodule init 
+                            git submodule update
+				./autogen.sh
+				make 
+                                sudo make install
+				cd ..
 				cd libirecovery
                               git submodule init 
                             git submodule update
@@ -113,7 +115,7 @@ if [ "$#" == 1 ]; then
 
                          cd ..
 				echo "[+] Dependencies should now be installed and compiled."
-			fi
+			
             
 			rm -rfv ipsw  *.im4p *.prepatched *.raw *.img4 shsh downgrade* 
 			echo "Killing iTunes as this will be quite annoying with what we are going to do."
@@ -122,42 +124,42 @@ if [ "$#" == 1 ]; then
 			unzip -q -d ipsw *.ipsw
 			cp -rv ipsw/Firmware/Mav7Mav8-7.60.00.Release.bbfw .
             ls
-            ./igetnonce | grep 'n53ap' &> /dev/null
+            igetnonce | grep 'n53ap' &> /dev/null
             if [ $? == 0 ]; then
                echo "Supported Device"
                device="iPhone6,2"
                echo $device
             fi
 
-            ./igetnonce | grep 'n51ap' &> /dev/null
+            igetnonce | grep 'n51ap' &> /dev/null
             if [ $? == 0 ]; then
                echo "Supported Device"
                device="iPhone6,1"
                echo $device
             fi
 
-            ./igetnonce | grep 'j71ap' &> /dev/null
+            igetnonce | grep 'j71ap' &> /dev/null
             if [ $? == 0 ]; then
                echo "Supported Device"
                device="iPad4,1"
                echo $device
             fi
 
-            ./igetnonce | grep 'j72ap' &> /dev/null
+            igetnonce | grep 'j72ap' &> /dev/null
             if [ $? == 0 ]; then
                echo "Supported Device"
                device="iPad4,2"
                echo $device
             fi
 
-            ./igetnonce | grep 'j85ap' &> /dev/null
+            igetnonce | grep 'j85ap' &> /dev/null
             if [ $? == 0 ]; then
                echo "Supported Device"
                device="iPad4,4"
                echo $device
             fi
 
-            ./igetnonce | grep 'j86ap' &> /dev/null
+            igetnonce | grep 'j86ap' &> /dev/null
             if [ $? == 0 ]; then
                echo "Supported Device"
                device="iPad4,5"
@@ -175,7 +177,7 @@ if [ "$#" == 1 ]; then
 
             #Credit to @dora2_yururi for ECID/Apnonce getting stuff from Nudaoaddu
 
-            ret=$(./igetnonce 2>/dev/null | grep ECID)
+            ret=$(igetnonce 2>/dev/null | grep ECID)
             ecidhex=$(echo $ret | cut -d '=' -f 2 )
             ecidhex2=$(echo $ecidhex | tr '[:lower:]' '[:upper:]')
             echo $ecidhex2 >/dev/null
