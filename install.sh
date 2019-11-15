@@ -11,12 +11,15 @@ function linux_depends(){
                 libclutter-1.0-dev  \
                 libfuse-dev cython python2.7 \
                 libncurses5 libplist-utils libplist-dev libplist++-dev zip unzip
+                sudo dpkg -i multiarch-support_2.29-0ubuntu2_amd64.deb
+                sudo dpkg -i libssl1.0.0_1.0.1t-1+deb8u12_amd64.deb
+                sudo dpkg -i libzip4_1.0.1-0ubuntu1_amd64.deb
         else
                 echo "Package manager is not supported"
                 exit 1
         fi
 }
-
+ 
 function macos_depends(){
         # Install Hombrew.
         if [[ ! -e $(which brew) ]]; then
