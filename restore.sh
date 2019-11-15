@@ -76,6 +76,8 @@ if [ "$#" == 1 ]; then
 				./autogen.sh
 				make && make install
                 cd ../..
+                              unzip maloader.zip
+                              unzip liboffsetfinder64.zip
                               cd liboffsetfinder64
 				./autogen.sh
 				make && make install
