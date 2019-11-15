@@ -12,6 +12,7 @@ if [ "$#" == 1 ]; then
 		fi
 
         cd ipwndfu_public
+        until [ $string = 1 ];
         do
             
             echo "Waiting 10 seconds to allow you to enter DFU mode"
