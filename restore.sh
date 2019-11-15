@@ -196,10 +196,10 @@ if [ "$#" == 1 ]; then
 				fi 
 
 				img4tool -e --iv a83dfcc277766ccb5da4220811ec2407 --key b4f8d062a97628231a289ae2a50647c309c43030577dca7fc2eee3a13ddb51ea -o iBEC.raw iBEC.ipad4.RELEASE.im4p
-				./iBoot64Patcher iBEC.raw iBEC.prepatched 
+				./maloader/ld-mac maloader/iBoot64Patcher iBEC.raw iBEC.prepatched 
 				img4tool -c iBEC.im4p -t ibec iBEC.prepatched
                 img4tool -e --iv 28eed0b4cada986cee0ec95350b64f04 --key c8b8f09e4cc888e4d0045145bceebb3783e146d56393ffce3268aae3225af3d7 -o iBSS.raw iBSS.ipad4.RELEASE.im4p
-                ./iBoot64Patcher iBSS.raw iBSS.prepatched
+                ./maloader/ld-mac maloader/iBoot64Patcher iBSS.raw iBSS.prepatched
                 img4tool -c iBSS.im4p -t ibss iBSS.prepatched
 
                 if [ $device == iPad4,3 ]; then
@@ -227,10 +227,10 @@ if [ "$#" == 1 ]; then
 				fi
 
 				img4tool -e --iv 3067a2585100890afd3b266926ac254b --key dcdf5a9eb3ae0464e984333e15876faa116525ca4b61f361283a808ca09c7480 -o iBEC.raw iBEC.ipad4b.RELEASE.im4p
-				./iBoot64Patcher iBEC.raw iBEC.prepatched 
+				./maloader/ld-mac maloader/iBoot64Patcher iBEC.raw iBEC.prepatched 
 				img4tool -c iBEC.im4p -t ibec iBEC.prepatched
                 img4tool -e --iv b3aafc6e758290c3aeec057105d16b36 --key 77659e333d13ebb5ad804daf4fbbaf4a9c86bc6065e88ac0190df8c119a916f3 -o iBSS.raw iBSS.ipad4b.RELEASE.im4p
-                ./iBoot64Patcher iBSS.raw iBSS.prepatched
+                ./maloader/ld-mac maloader/iBoot64Patcher iBSS.raw iBSS.prepatched
                 img4tool -c iBSS.im4p -t ibss iBSS.prepatched
                 tsschecker -d "$device" -i 10.3.3 -o -m manifests/BuildManifest_"$device"_1033_OTA.plist -e $ecid -s --save-path shsh
 				mv -v shsh/*.shsh* shsh/stitch.shsh2 
@@ -243,13 +243,11 @@ if [ "$#" == 1 ]; then
 			cd ipsw
 			zip ../downgrade.ipsw -r9 *
 			cd ..
-			echo "checkm8" >> dummy_file
+			
 			raw=$(irecovery -q | grep NONC)
 			apnonce=$(echo $raw | cut -d ':' -f 2)
             
             if [ $device == iPad4,1 ] || [ $device == iPad4,2 ] || [ $device == iPad4,3 ] || [ $device == iPad4,4 ] || [ $device == iPad4,5 ]; then
-                irecovery -f dummy_file
-                sleep 1
                 irecovery -f iBSS.img4
                 sleep 1
                 irecovery -f iBEC.img4
@@ -263,8 +261,6 @@ if [ "$#" == 1 ]; then
             fi
 
             if [ $device == iPhone6,1 ] || [ $device == iPhone6,2 ]; then
-                irecovery -f dummy_file
-                sleep 1
                 irecovery -f iBSS.img4
                 sleep 1
                 irecovery -f iBEC.img4
@@ -288,8 +284,7 @@ if [ "$#" == 1 ]; then
             fi
             echo "Cleaning up :D"
             rm -rfv dummy_file iBSS* iBEC* *.bbfw *.im4p downgrade ipsw *.ipsw
-            echo "If you see this, we're done! Shoutout to the devs and Matty for making this possible! - Merculous"
-            echo "P.S. You know, this could look even better and be even easier if we port it to Python :D"
+            echo "If you see this, we're done! Shoutout to the devs and LukeDev for making this possible! - twilightmoon4"
 
         else
             echo "Did not find checkm8 within lsusb. We are going to exit. Please enter pwned DFU and run again!"
