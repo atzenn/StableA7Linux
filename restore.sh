@@ -30,6 +30,11 @@ if [ "$#" == 1 ]; then
         
 		if [ $string == 1 ]; then
 			echo "We seem to be in pwned DFU mode!"
+                      
+			if [ -e "build" ]; then
+				echo "[+] Build folder exists! If the script doesn't work please delete the 'Build' folder and run it again"
+                sleep 3
+              else
 
 				echo "[+] Build folder does not exist! Grabbing dependencies and installing!"
 				mkdir -p build && cd build
@@ -115,7 +120,7 @@ if [ "$#" == 1 ]; then
 
                          cd ..
 				echo "[+] Dependencies should now be installed and compiled."
-			
+			fi
             
 			rm -rfv ipsw  *.im4p *.prepatched *.raw *.img4 shsh downgrade* 
 			echo "Killing iTunes as this will be quite annoying with what we are going to do."
@@ -181,7 +186,8 @@ if [ "$#" == 1 ]; then
             ecidhex=$(echo $ret | cut -d '=' -f 2 )
             ecidhex2=$(echo $ecidhex | tr '[:lower:]' '[:upper:]')
             echo $ecidhex2 >/dev/null
-            ecid=$(echo "obase=10; ibase=16; $ecidhex2" | bc)
+            igetnonce
+            read -p "copy and paste ecid: " ecid
             echo $ecid
 
 			if [ $device == iPhone6,1 ] || [ $device == iPhone6,2 ]; then # If iPhone 5S
