@@ -21,7 +21,6 @@ if [ "$#" == 1 ]; then
             echo "Please just enter DFU mode again on each reboot"
             echo "The script will run ipwndfu again and again until the device is in PWNDFU mode"
             ./ipwndfu -p
-            string=$(lsusb | grep -c "Apple, Inc. Mobile Device (DFU Mode)")
             ./ipwndfu -p
             string=$(lsusb | grep -c "Apple, Inc. Mobile Device (DFU Mode)")
         done
