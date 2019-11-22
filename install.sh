@@ -10,7 +10,9 @@ function linux_depends(){
                 libgcc1 libreadline-dev libglib2.0-dev libzip-dev \
                 libclutter-1.0-dev  \
                 libfuse-dev cython python2.7 \
-                libncurses5 libplist-utils libplist-dev libplist++-dev zip unzip
+                libncurses5 libusbmuxd-dev usbmuxd libplist++-dev libplist-utils \
+                libplist-dev libimobiledevice-dev ideviceinstaller libusb-dev \
+                zip unzip
                 sudo dpkg -i multiarch-support_2.29-0ubuntu2_amd64.deb
                 sudo dpkg -i libssl1.0.0_1.0.1t-1+deb8u12_amd64.deb
                 sudo dpkg -i libzip4_1.0.1-0ubuntu1_amd64.deb
