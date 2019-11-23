@@ -203,9 +203,9 @@ if [ "$#" == 1 ]; then
 				mv -v ipsw/Firmware/dfu/*.iphone6*.im4p .
 
 				if [ $device == iPhone6,1 ]; then
-					cp -rv ipsw/Firmware/all_flash/sep-firmware.n51.RELEASE.im4p /
+					cp -rv ipsw/Firmware/all_flash/sep-firmware.n51.RELEASE.im4p .
 				else
-					cp -rv ipsw/Firmware/all_flash/sep-firmware.n53.RELEASE.im4p /
+					cp -rv ipsw/Firmware/all_flash/sep-firmware.n53.RELEASE.im4p .
 				fi
 
 				img4tool -e --iv f2aa35f6e27c409fd57e9b711f416cfe --key 599d9b18bc51d93f2385fa4e83539a2eec955fce5f4ae960b252583fcbebfe75 -o iBSS.raw iBSS.iphone6.RELEASE.im4p
@@ -223,19 +223,19 @@ if [ "$#" == 1 ]; then
 			fi
 
 			if [ $device == iPad4,1 ] || [ $device == iPad4,2 ] || [ $device == iPad4,3 ]; then # If iPad Air
-				mv -v ipsw/Firmware/dfu/iBEC.ipad4.RELEASE.im4p /
-                mv -v ipsw/Firmware/dfu/iBSS.ipad4.RELEASE.im4p /
+				mv -v ipsw/Firmware/dfu/iBEC.ipad4.RELEASE.im4p .
+                mv -v ipsw/Firmware/dfu/iBSS.ipad4.RELEASE.im4p .
 
 				if [ $device == iPad4,1 ]; then
-					cp -rv ipsw/Firmware/all_flash/sep-firmware.j71.RELEASE.im4p /
+					cp -rv ipsw/Firmware/all_flash/sep-firmware.j71.RELEASE.im4p .
 				fi
 
 				if [ $device == iPad4,2 ]; then
-					cp -rv ipsw/Firmware/all_flash/sep-firmware.j72.RELEASE.im4p /
+					cp -rv ipsw/Firmware/all_flash/sep-firmware.j72.RELEASE.im4p .
 				fi 
 
 				if [ $device == iPad4,3 ]; then
-					cp -rv ipsw/Firmware/all_flash/sep-firmware.j73.RELEASE.im4p /
+					cp -rv ipsw/Firmware/all_flash/sep-firmware.j73.RELEASE.im4p .
 				fi 
 
 				img4tool -e --iv a83dfcc277766ccb5da4220811ec2407 --key b4f8d062a97628231a289ae2a50647c309c43030577dca7fc2eee3a13ddb51ea -o iBEC.raw iBEC.ipad4.RELEASE.im4p
@@ -264,9 +264,9 @@ if [ "$#" == 1 ]; then
                 mv -v ipsw/Firmware/dfu/iBSS.ipad4b.RELEASE.im4p .
 
 				if [ $device == iPad4,4 ]; then
-					cp -rv ipsw/Firmware/all_flash/sep-firmware.j85.RELEASE.im4p /
+					cp -rv ipsw/Firmware/all_flash/sep-firmware.j85.RELEASE.im4p .
 				else
-					cp -rv ipsw/Firmware/all_flash/sep-firmware.j86.RELEASE.im4p /
+					cp -rv ipsw/Firmware/all_flash/sep-firmware.j86.RELEASE.im4p .
 				fi
 
 				img4tool -e --iv 3067a2585100890afd3b266926ac254b --key dcdf5a9eb3ae0464e984333e15876faa116525ca4b61f361283a808ca09c7480 -o iBEC.raw iBEC.ipad4b.RELEASE.im4p
