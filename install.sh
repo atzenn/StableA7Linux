@@ -16,7 +16,7 @@ function linux_depends(){
                 zip unzip libimobiledevice-utils libgcrypt20-doc gnutls-doc \
                 gnutls-bin git libplist++ python2.7-dev \
                 python3-dev libusbmuxd4 libreadline6-dev libusb-dev \
-                libzip-dev libssl-dev sshpass m4
+                libzip-dev libssl-dev sshpass m4 bsdiff
                 sudo apt-get build-dep
                 sudo dpkg -i multiarch-support_2.29-0ubuntu2_amd64.deb
                 sudo dpkg -i libssl1.0.0_1.0.1t-1+deb8u12_amd64.deb
@@ -100,6 +100,7 @@ function build_libimobiledevice(){
                         git clone https://github.com/libimobiledevice/${i}.git
                         cd $i
                         echo -e "\033[1;32mConfiguring $i..."
+                        echo "" > Makefile.in 
                         ./autogen.sh
                         echo -e "\033[1;32mBuilding $i..."
                         make && sudo make install
