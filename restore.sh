@@ -215,7 +215,7 @@ if [ "$#" == 1 ]; then
 				img4tool -c iBSS.im4p -t ibss iBSS.prepatched
 				img4tool -c iBEC.im4p -t ibec iBEC.prepatched
 				tsschecker -d "$device" -i 10.3.3 -o -m manifests/BuildManifest_"$device"_1033_OTA.plist -e $ecid -s --save-path shsh
-				mv -v shsh/*.shsh* shsh/stitch.shsh2
+				mv -v shsh/*.shsh2 shsh/stitch.shsh2
 				./img4tool -c iBSS.img4 -p iBSS.im4p -s shsh/stitch.shsh2 
 				./img4tool -c iBEC.img4 -p iBEC.im4p -s shsh/stitch.shsh2
 				cp -v iBSS.img4 ipsw/Firmware/dfu/iBSS.iphone6.RELEASE.im4p
@@ -252,7 +252,7 @@ if [ "$#" == 1 ]; then
                     tsschecker -d "$device" -i 10.3.3 -o -m manifests/BuildManifest_"$device"_1033_OTA.plist -e $ecid -s --save-path shsh
                 fi
 
-				mv -v shsh/*.shsh* shsh/stitch.shsh2 
+				mv -v shsh/*.shsh2 shsh/stitch.shsh2 
 				./img4tool -c iBEC.img4 -p iBEC.im4p -s shsh/stitch.shsh2 
 				cp -v iBEC.img4 ipsw/Firmware/dfu/iBEC.ipad4.RELEASE.im4p
                 ./img4tool -c iBSS.img4 -p iBSS.im4p -s shsh/stitch.shsh2
@@ -276,7 +276,7 @@ if [ "$#" == 1 ]; then
                ./maloader/ld-mac maloader/iBoot64Patcher iBSS.raw iBSS.prepatched
                 img4tool -c iBSS.im4p -t ibss iBSS.prepatched
                 tsschecker -d "$device" -i 10.3.3 -o -m manifests/BuildManifest_"$device"_1033_OTA.plist -e $ecid -s --save-path shsh
-				mv -v shsh/*.shsh* shsh/stitch.shsh2 
+				mv -v shsh/*.shsh2 shsh/stitch.shsh2 
 				./img4tool -c iBEC.img4 -p iBEC.im4p -s shsh/stitch.shsh2 
 				cp -v iBEC.img4 ipsw/Firmware/dfu/iBEC.ipad4b.RELEASE.im4p
                 ./img4tool -c iBSS.img4 -p iBSS.im4p -s shsh/stitch.shsh2
@@ -317,7 +317,7 @@ if [ "$#" == 1 ]; then
                 tsschecker -d "$device" -i 10.3.3 -o -m manifests/BuildManifest_"$device"_1033_OTA.plist -e $ecid --apnonce $apnonce -s
             fi
 
-           mv -v *.shsh* shsh/apnonce.shsh2
+           mv -v *.shsh shsh/apnonce.shsh
             echo "Done prepping files! Time to downgrade!!!"
 
             echo "****RESTORING!****"
@@ -325,11 +325,11 @@ if [ "$#" == 1 ]; then
             sleep 10
             if [ $device == iPhone6,1 ] || [ $device == iPhone6,2 ] || [ $device == iPad4,5 ] || [ $device == iPad4,2 ] || [ $device == iPad4,3 ]; then
             
-                futurerestore -t shsh/apnonce.shsh2 -s sep-firmware.*.RELEASE.im4p -m manifests/BuildManifest_"$device"_1033_OTA.plist -b Mav7Mav8-7.60.00.Release.bbfw -p manifests/BuildManifest_"$device"_1033_OTA.plist downgrade.ipsw
+                futurerestore -t shsh/apnonce.shsh -s sep-firmware.*.RELEASE.im4p -m manifests/BuildManifest_"$device"_1033_OTA.plist -b Mav7Mav8-7.60.00.Release.bbfw -p manifests/BuildManifest_"$device"_1033_OTA.plist downgrade.ipsw
             fi
             if  [ $device == iPad4,4 ] || [ $device == iPad4,1 ]; then
             
-                futurerestore -t shsh/apnonce.shsh2 -s sep-firmware.*.RELEASE.im4p -m manifests/BuildManifest_"$device"_1033_OTA.plist --no-baseband downgrade.ipsw
+                futurerestore -t shsh/apnonce.shsh -s sep-firmware.*.RELEASE.im4p -m manifests/BuildManifest_"$device"_1033_OTA.plist --no-baseband downgrade.ipsw
             fi
             echo "Cleaning up :D"
             
