@@ -16,7 +16,7 @@ function linux_depends(){
                 zip unzip libimobiledevice-utils libgcrypt20-doc gnutls-doc \
                 gnutls-bin git libplist++ python2.7-dev \
                 python3-dev libusbmuxd4 libreadline6-dev libusb-dev \
-                libzip-dev libssl-dev sshpass
+                libzip-dev libssl-dev sshpass m4
                 sudo dpkg -i multiarch-support_2.29-0ubuntu2_amd64.deb
                 sudo dpkg -i libssl1.0.0_1.0.1t-1+deb8u12_amd64.deb
                 sudo dpkg -i libzip4_1.0.1-0ubuntu1_amd64.deb
