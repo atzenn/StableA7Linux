@@ -6,7 +6,7 @@ function linux_depends(){
         if [[ $(which apt-get) ]]; then
                 sudo apt-get install -y git build-essential make autoconf \
                 automake libtool openssl tar perl binutils gcc g++ \
-                libc6-dev libssl-dev libusb-1.0-0-dev \
+                libc6-dev libssl-dev libusb-1.0-0-dev build-dep \
                 libcurl4-gnutls-dev fuse libxml2-dev \
                 libgcc1 libreadline-dev libglib2.0-dev libzip-dev \
                 libclutter-1.0-dev  \
@@ -87,12 +87,20 @@ function macos_depends(){
 }
 
 function build_libimobiledevice(){
+       
         libs=( "libplist" "libusbmuxd" "libimobiledevice" "usbmuxd" "libirecovery" \
                 "ideviceinstaller" "libideviceactivation" "idevicerestore" "ifuse" )
 
-        buildlibs() {
+        buildlibs() { 
+                 
                 for i in "${libs[@]}"
                 do
+                        git clone http://github.com/s0uthwest/libimobiledevice.git
+                        cd libimobiledevice
+                        ./autogen.sh
+                        make
+                        sudo make install
+                        cd ..
                         echo -e "\033[1;32mFetching $i..."
                         git clone https://github.com/libimobiledevice/${i}.git
                         cd $i
