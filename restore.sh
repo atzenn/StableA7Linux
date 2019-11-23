@@ -131,8 +131,7 @@ if [ "$#" == 1 ]; then
 				echo "[+] Dependencies should now be installed and compiled."
 			fi
             
-			rm -rfv ipsw  *.im4p *.prepatched *.raw *.img4 shsh downgrade* 
-			echo "Killing iTunes as this will be quite annoying with what we are going to do."
+			rm -rfv ipsw  *.im4p *.prepatched *.raw *.img4 shsh iBSS* iBEC* *.bbfw *.im4p downgrade ipsw downgrade.ipsw
 			mkdir -p ipsw
 			mkdir -p shsh
 			unzip -q -d ipsw *.ipsw
@@ -285,17 +284,20 @@ if [ "$#" == 1 ]; then
 			fi
 
 			cd ipsw
-                        zip -q ../downgrade.ipsw -r0 *
+            zip -q ../downgrade.ipsw -r0 *
 			
 			cd ..
 			
 			raw=$(irecovery -q | grep NONC)
 			apnonce=$(echo $raw)
-            
+
+             igetnonce
+            read -p "copy and paste apnonce: " apnonce
+            echo $ecid            
             if [ $device == iPad4,1 ] || [ $device == iPad4,2 ] || [ $device == iPad4,3 ] || [ $device == iPad4,4 ] || [ $device == iPad4,5 ]; then
                 
                 irecovery -f iBSS.img4
-                sleep 1
+                sleep 2
                 irecovery -f iBEC.img4
                 sleep 2
 
@@ -309,18 +311,18 @@ if [ "$#" == 1 ]; then
             if [ $device == iPhone6,1 ] || [ $device == iPhone6,2 ]; then
                 
                 irecovery -f iBSS.img4
-                sleep 1
+                sleep 2
                 irecovery -f iBEC.img4
                 sleep 2
                 tsschecker -d "$device" -i 10.3.3 -o -m manifests/BuildManifest_"$device"_1033_OTA.plist -e $ecid --apnonce $apnonce -s
             fi
 
-            mv -v *.shsh* shsh/apnonce.shsh2
+           mv -v *.shsh* shsh/apnonce.shsh2
             echo "Done prepping files! Time to downgrade!!!"
 
             echo "****RESTORING!****"
             echo "Waiting for device to reconnect..."
-            sleep 5
+            sleep 10
             if [ $device == iPhone6,1 ] || [ $device == iPhone6,2 ] || [ $device == iPad4,5 ] || [ $device == iPad4,2 ] || [ $device == iPad4,3 ]; then
             
                 futurerestore -t shsh/apnonce.shsh2 -s sep-firmware.*.RELEASE.im4p -m manifests/BuildManifest_"$device"_1033_OTA.plist -b Mav7Mav8-7.60.00.Release.bbfw -p manifests/BuildManifest_"$device"_1033_OTA.plist downgrade.ipsw
@@ -330,7 +332,7 @@ if [ "$#" == 1 ]; then
                 futurerestore -t shsh/apnonce.shsh2 -s sep-firmware.*.RELEASE.im4p -m manifests/BuildManifest_"$device"_1033_OTA.plist --no-baseband downgrade.ipsw
             fi
             echo "Cleaning up :D"
-            rm -rfv iBSS* iBEC* *.bbfw *.im4p downgrade ipsw downgrade.ipsw
+            
             echo "If you see this, we're done! Shoutout to the devs and LukeDev for making this possible! - twilightmoon4"
           
 
@@ -341,5 +343,5 @@ if [ "$#" == 1 ]; then
     fi
     echo "Usage: $0 PathToIpsw (ipsw must be in this directory)"
     echo "Example: $0 iPhone_4.0_64bit_10.3.3_14G60_Restore.ipsw"
-fi
+
 
