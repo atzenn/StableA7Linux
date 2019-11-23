@@ -1,3 +1,4 @@
+#!/bin/bash
 echo -e "Compiling libimobiledevice"
 
 function linux_depends(){
@@ -12,7 +13,10 @@ function linux_depends(){
                 libfuse-dev cython python2.7 \
                 libncurses5 libusbmuxd-dev usbmuxd libplist++-dev libplist-utils \
                 libplist-dev libimobiledevice-dev ideviceinstaller libusb-dev \
-                zip unzip
+                zip unzip libimobiledevice-utils libgcrypt20-doc gnutls-doc \
+                gnutls-bin git libplist++ python2.7-dev \
+                python3-dev libusbmuxd4 libreadline6-dev libusb-dev \
+                libzip-dev libssl-dev sshpass
                 sudo dpkg -i multiarch-support_2.29-0ubuntu2_amd64.deb
                 sudo dpkg -i libssl1.0.0_1.0.1t-1+deb8u12_amd64.deb
                 sudo dpkg -i libzip4_1.0.1-0ubuntu1_amd64.deb

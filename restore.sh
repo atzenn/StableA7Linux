@@ -119,6 +119,7 @@ if [ "$#" == 1 ]; then
                                 make release
 
                          cd ..
+                         sudo apt-get install libcurl4-openssl-dev
 				echo "[+] Dependencies should now be installed and compiled."
 			fi
             
