@@ -53,6 +53,7 @@ if [ "$#" == 1 ]; then
 			       cd lzfse
                               git submodule init 
                             git submodule update
+                             echo "" > Makefile.in 
 				./autogen.sh
 				make 
                                 sudo make install
@@ -60,6 +61,7 @@ if [ "$#" == 1 ]; then
 				cd libirecovery
                               git submodule init 
                             git submodule update
+                             echo "" > Makefile.in 
 				./autogen.sh
 				make 
                                 sudo make install
@@ -67,6 +69,7 @@ if [ "$#" == 1 ]; then
                                 cd libgeneral
                            git submodule init
                          git submodule update
+                          echo "" > Makefile.in 
 				./autogen.sh
 				make
                                   sudo make install
@@ -74,6 +77,7 @@ if [ "$#" == 1 ]; then
                                 cd libfragmentzip
                            git submodule init
                           git submodule update
+                           echo "" > Makefile.in 
 				./autogen.sh
 				make 
                               sudo make install
@@ -81,12 +85,14 @@ if [ "$#" == 1 ]; then
                                cd futurerestore
                            git submodule init 
                            git submodule update
+                            echo "" > Makefile.in 
 				./autogen.sh
 				make && sudo make install
 				cd .. 
                                cd img4tool
                           git submodule init 
                        git submodule update
+                        echo "" > Makefile.in 
 				./autogen.sh
 				make           
                                 sudo make install
@@ -94,6 +100,7 @@ if [ "$#" == 1 ]; then
                                 cd tsschecker
                             git submodule init
                         git submodule update
+                         echo "" > Makefile.in 
 				./autogen.sh
 				make
                                 sudo make install
@@ -101,6 +108,7 @@ if [ "$#" == 1 ]; then
                               cd igetnonce
                            git submodule init
                      git submodule update
+                      echo "" > Makefile.in 
 				./autogen.sh
 				make 
                                sudo make install
@@ -119,7 +127,7 @@ if [ "$#" == 1 ]; then
                                 make release
 
                          cd ..
-                         sudo apt-get install libcurl4-openssl-dev
+                 sudo apt-get install libcurl4-openssl-dev
 				echo "[+] Dependencies should now be installed and compiled."
 			fi
             
