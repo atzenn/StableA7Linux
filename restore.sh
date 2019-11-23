@@ -38,14 +38,14 @@ if [ "$#" == 1 ]; then
 
 				echo "[+] Build folder does not exist! Grabbing dependencies and installing!"
 				mkdir -p build && cd build
-                                git clone https://github.com/lzfse/lzfse
+                git clone https://github.com/lzfse/lzfse
 				git clone https://github.com/libimobiledevice/libirecovery
 				git clone https://github.com/tihmstar/libfragmentzip
 				git clone https://github.com/tihmstar/libgeneral.git
-				git clone --recursive https://github.com/merculous/futurerestore
+				git clone https://github.com/merculous/futurerestore
 				git clone https://github.com/tihmstar/img4tool.git
-				git clone --recursive https://github.com/tihmstar/tsschecker
-                                git clone --recursive https://github.com/tihmstar/igetnonce
+				git clone https://github.com/tihmstar/tsschecker
+                git clone https://github.com/tihmstar/igetnonce
 
 
 				export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"

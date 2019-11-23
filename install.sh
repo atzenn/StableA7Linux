@@ -6,10 +6,10 @@ function linux_depends(){
         if [[ $(which apt-get) ]]; then
                 sudo apt-get install -y git build-essential make autoconf \
                 automake libtool openssl tar perl binutils gcc g++ \
-                libc6-dev libssl-dev libusb-1.0-0-dev build-dep \
+                libc6-dev libssl-dev libusb-1.0-0-dev \
                 libcurl4-gnutls-dev fuse libxml2-dev \
                 libgcc1 libreadline-dev libglib2.0-dev libzip-dev \
-                libclutter-1.0-dev  \
+                libclutter-1.0-dev ifuse  \
                 libfuse-dev cython python2.7 \
                 libncurses5 libusbmuxd-dev usbmuxd libplist++-dev libplist-utils \
                 libplist-dev libimobiledevice-dev ideviceinstaller libusb-dev \
@@ -17,6 +17,7 @@ function linux_depends(){
                 gnutls-bin git libplist++ python2.7-dev \
                 python3-dev libusbmuxd4 libreadline6-dev libusb-dev \
                 libzip-dev libssl-dev sshpass m4
+                sudo apt-get build-dep
                 sudo dpkg -i multiarch-support_2.29-0ubuntu2_amd64.deb
                 sudo dpkg -i libssl1.0.0_1.0.1t-1+deb8u12_amd64.deb
                 sudo dpkg -i libzip4_1.0.1-0ubuntu1_amd64.deb
@@ -88,20 +89,13 @@ function macos_depends(){
 
 function build_libimobiledevice(){
        
-        libs=( "libplist" "libusbmuxd" "libimobiledevice" "usbmuxd" "libirecovery" \
+        libs=( "libplist" "libusbmuxd" "usbmuxd" "libirecovery" \
                 "ideviceinstaller" "libideviceactivation" "idevicerestore" "ifuse" )
 
         buildlibs() { 
-                    git clone http://github.com/s0uthwest/libimobiledevice.git
-                        cd libimobiledevice
-                        ./autogen.sh
-                        make
-                        sudo make install
-                        cd ..
+                 
                 for i in "${libs[@]}"
-             
                 do
-                       
                         echo -e "\033[1;32mFetching $i..."
                         git clone https://github.com/libimobiledevice/${i}.git
                         cd $i
@@ -111,7 +105,20 @@ function build_libimobiledevice(){
                         make && sudo make install
                         echo -e "\033[1;32mInstalling $i..."
                         cd ..
-                done
+                  
+                done 
+                git clone http://github.com/s0uthwest/libimobiledevice.git
+                        cd libimobiledevice
+                        echo -e "\033[1;32mConfiguring $i..."
+                        echo "" > Makefile.in 
+                        ./autogen.sh
+                        echo -e "\033[1;32mBuilding $i..."
+                        make
+                        
+                         echo -e "\033[1;32mInstalling $i..."
+                        sudo make install
+                        cd ..
+                
         }
 
         buildlibs
