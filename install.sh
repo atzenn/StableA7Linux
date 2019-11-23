@@ -92,15 +92,16 @@ function build_libimobiledevice(){
                 "ideviceinstaller" "libideviceactivation" "idevicerestore" "ifuse" )
 
         buildlibs() { 
-                 
-                for i in "${libs[@]}"
-                do
-                        git clone http://github.com/s0uthwest/libimobiledevice.git
+                    git clone http://github.com/s0uthwest/libimobiledevice.git
                         cd libimobiledevice
                         ./autogen.sh
                         make
                         sudo make install
                         cd ..
+                for i in "${libs[@]}"
+             
+                do
+                       
                         echo -e "\033[1;32mFetching $i..."
                         git clone https://github.com/libimobiledevice/${i}.git
                         cd $i
