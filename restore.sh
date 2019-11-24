@@ -44,8 +44,8 @@ if [ "$#" == 1 ]; then
 				git clone https://github.com/tihmstar/libgeneral.git
 				git clone https://github.com/merculous/futurerestore
 				git clone https://github.com/tihmstar/img4tool.git
-				git clone https://github.com/tihmstar/tsschecker
-                git clone https://github.com/tihmstar/igetnonce
+				git clone https://github.com/s0uthwest/tsschecker
+                git clone https://github.com/s0uthwest/igetnonce
 
 
 				export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
