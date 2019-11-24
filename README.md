@@ -21,5 +21,7 @@ run on terminal =>
 Without quotes =>
 
 Example: iPhone6,2 =>
+]
+Working Release
 
-My first beta of StableA7Linux
+Thanks to: @LinusHenze @mosk_i @tihmstar @a_i_da_n @ConsoleLogLuke <3
